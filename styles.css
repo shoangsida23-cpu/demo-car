@@ -20,7 +20,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .controls{display:flex;gap:12px;align-items:center}
 .search{display:flex;align-items:center;background:#fff;border-radius:999px;padding:8px 12px;box-shadow:0 6px 18px rgba(11,11,11,0.06)}
 .search input{border:0;outline:0;background:transparent;padding:8px 6px;font-size:14px}
-.btn{background:var(--panel);color:var(--gold);padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+.btn{background:var(--panel);color:var(--gold);Padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
 .btn.secondary{background:transparent;color:#111;border:1px solid rgba(0,0,0,0.06)}
 .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:24px;align-items:stretch}
 .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.85));border-radius:18px;padding:28px;box-shadow:0 10px 40px rgba(11,11,11,0.07)}

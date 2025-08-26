@@ -59,12 +59,12 @@ function initApp(){
     for(const car of list){
       const el = document.createElement('article'); el.className='card';
       el.innerHTML = `
-        <div class="thumb"><img alt="${car.brand} ${car.name}" src="${car.image}" /></div>
+        <div class="thumb"><a href="cars/${car.id}.html"><img alt="${car.brand} ${car.name}" src="${car.image}" /></a></div>
         <div class="card-body">
           <div class="meta"><div><strong>${car.brand} ${car.name}</strong><div style='font-size:13px;color:#666'>${car.type}</div></div><div class="price">€${car.price.toLocaleString()}</div></div>
           <div class="specs"><div>HP: ${car.hp}</div><div>Top: ${car.topSpeed} km/h</div><div>${car.available? 'Available' : 'Sold'}</div></div>
           <div class="card-actions">
-            <button class="btn" data-id="${car.id}">Chi tiết</button>
+            <a class="btn" href="cars/${car.id}.html">Chi tiết</a>
             <button class="btn secondary" data-short="inquire-${car.id}">Liên hệ</button>
           </div>
         </div>
