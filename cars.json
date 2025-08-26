@@ -1,0 +1,80 @@
+[
+  {
+    "id": "pm-001",
+    "name": "Aurelius V12",
+    "brand": "Aurelius",
+    "type": "Hypercar",
+    "price": 3200000,
+    "hp": 1200,
+    "topSpeed": 380,
+    "available": true,
+    "limited": true,
+    "image": "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1400&q=80",
+    "description": "Hypercar limited edition, khung carbon, nội thất thủ công, sản xuất 10 chiếc trên toàn thế giới."
+  },
+  {
+    "id": "pm-002",
+    "name": "Monarque GT",
+    "brand": "Monarque",
+    "type": "Supercar",
+    "price": 850000,
+    "hp": 710,
+    "topSpeed": 345,
+    "available": true,
+    "limited": false,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
+    "description": "Supercar hiệu năng cao, thiết kế khí động học, phù hợp cho track và road."
+  },
+  {
+    "id": "pm-003",
+    "name": "Imperial S",
+    "brand": "Imperial",
+    "type": "Luxury",
+    "price": 220000,
+    "hp": 420,
+    "topSpeed": 260,
+    "available": false,
+    "limited": false,
+    "image": "https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?auto=format&fit=crop&w=1400&q=80",
+    "description": "Sedan hạng sang dành cho doanh nhân, nội thất dát vàng tinh tế, hệ thống giải trí cao cấp."
+  },
+  {
+    "id": "pm-004",
+    "name": "Veloce R",
+    "brand": "Veloce",
+    "type": "Supercar",
+    "price": 420000,
+    "hp": 580,
+    "topSpeed": 320,
+    "available": true,
+    "limited": false,
+    "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=80",
+    "description": "Supercar cân bằng giữa hiệu năng và thẩm mỹ, phù hợp người yêu tốc độ và vẻ đẹp."
+  },
+  {
+    "id": "pm-005",
+    "name": "Echelon One",
+    "brand": "Echelon",
+    "type": "Hypercar",
+    "price": 2500000,
+    "hp": 1000,
+    "topSpeed": 370,
+    "available": false,
+    "limited": true,
+    "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=80",
+    "description": "Hypercar hybrid, bộ đôi động cơ đốt trong và điện, hiệu suất vượt trội."
+  },
+  {
+    "id": "pm-006",
+    "name": "Cavalier Luxe",
+    "brand": "Cavalier",
+    "type": "Luxury",
+    "price": 120000,
+    "hp": 320,
+    "topSpeed": 240,
+    "available": true,
+    "limited": false,
+    "image": "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80",
+    "description": "Xe sang cỡ nhỏ tiện nghi, phù hợp cho sử dụng hàng ngày với phong cách tinh tế."
+  }
+]

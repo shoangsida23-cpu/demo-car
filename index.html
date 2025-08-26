@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prestige Motors — Luxury & Supercars</title>
+  <meta name="description" content="Trang bán xe sang trọng, supercar và hypercar. Giao diện chuyên nghiệp, màu chủ đạo trắng - đen - vàng gold." />
+
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">PM</div>
+        <div>
+          <h1>Prestige Motors</h1>
+          <p>Luxury • Supercars • Hypercars</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="search" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M21 21l-4.35-4.35" stroke="#888" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input id="search-input" placeholder="Tìm tên, hãng, hoặc model..." />
+        </div>
+        <button class="btn" id="download-json">Tải JSON</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Xe sang &amp; hiếm — được tuyển chọn cẩn thận</h2>
+        <p>Chúng tôi cung cấp các mẫu xe đẳng cấp: Luxury, Supercar, Hypercar. Lọc theo giá, công suất và loại để tìm chiếc xe phù hợp.</p>
+        <div class="hero-cta">
+          <button class="btn" id="show-all">Xem tất cả</button>
+          <button class="btn secondary" id="contact">Liên hệ</button>
+        </div>
+
+        <div style="display:flex;gap:14px;margin-top:18px">
+          <div class="stats" style="flex:1">
+            <div class="stat"><span>Danh mục</span><strong>6</strong></div>
+            <div class="stat"><span>Giá thấp nhất</span><strong>€120,000</strong></div>
+            <div class="stat"><span>Xe hiếm</span><strong>3 Limited Editions</strong></div>
+          </div>
+
+          <div style="width:160px;display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+            <div style="font-size:12px;color:#666">Màu chủ đạo</div>
+            <div style="display:flex;gap:6px;align-items:center">
+              <div class="swatch sw-white"></div>
+              <div class="swatch sw-black"></div>
+              <div class="swatch sw-gold"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="stats" aria-hidden="true">
+        <div style="font-size:13px;color:#fff;opacity:0.95">Bộ lọc nhanh</div>
+        <div style="font-size:12px;color:#ddd">Theo loại</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <div class="tag">Luxury</div>
+          <div class="tag">Supercar</div>
+          <div class="tag">Hypercar</div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="main">
+      <aside class="sidebar">
+        <div class="filter-group">
+          <h4>Loại xe</h4>
+          <div class="chips" id="type-chips">
+            <button class="chip" data-type="All">Tất cả</button>
+            <button class="chip" data-type="Luxury">Luxury</button>
+            <button class="chip" data-type="Supercar">Supercar</button>
+            <button class="chip" data-type="Hypercar">Hypercar</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Giá tối đa (EUR)</h4>
+          <input type="range" id="price-range" min="100000" max="5000000" step="10000" value="2000000">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><small>€100k</small><span class="range-val" id="range-val">€2,000,000</span></div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Bộ lọc thêm</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label><input type="checkbox" id="only-available" /> Chỉ hiển thị xe sẵn có</label>
+            <label><input type="checkbox" id="show-limited" checked /> Bao gồm Limited Editions</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Sắp xếp</h4>
+          <select id="sort-by" style="width:100%;padding:8px;border-radius:8px;border:1px solid #eee">
+            <option value="featured">Đề xuất</option>
+            <option value="price-asc">Giá tăng dần</option>
+            <option value="price-desc">Giá giảm dần</option>
+            <option value="hp-desc">Công suất giảm dần</option>
+          </select>
+        </div>
+
+      </aside>
+
+      <section style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 style="margin:0">Kết quả</h3>
+          <div style="color:#666">Hiển thị <span id="count">0</span> xe</div>
+        </div>
+
+        <div class="grid" id="cards"></div>
+
+        <footer>© <strong>Prestige Motors</strong> — Crafted with care. | Thiết kế: màu trắng • đen • vàng gold.</footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="gallery" id="modal-gallery"></div>
+      <div class="details">
+        <h3 id="modal-title"></h3>
+        <p id="modal-sub" style="color:#666;margin-top:6px"></p>
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <div style="font-size:20px;font-weight:800;color:var(--panel);" id="modal-price"></div>
+          <div style="margin-left:auto"><button class="btn" id="inquire">Yêu cầu mua</button></div>
+        </div>
+        <div style="margin-top:14px">
+          <div class="specs" id="modal-specs"></div>
+        </div>
+        <div style="margin-top:18px;color:#444;font-size:13px">Mô tả</div>
+        <p id="modal-desc" style="color:#555"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
