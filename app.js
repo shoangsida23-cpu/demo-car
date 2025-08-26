@@ -1,86 +1,25 @@
-// Load JSON data file and init interactivity
-fetch('cars.json').then(r=>r.json()).then(data=>{
-  window.cars = data;
-  initApp();
-}).catch(err=>{
-  console.error('Không tải được cars.json — hãy chắc file nằm cùng thư mục với index.html', err);
-  window.cars = [];
-  initApp();
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("cars.json")
+    .then((res) => res.json())
+    .then((cars) => {
+      const container = document.getElementById("cars-container");
+      cars.forEach((car) => {
+        const card = document.createElement("div");
+        card.className = "car-card";
+
+        // link trực tiếp sang trang chi tiết
+        card.innerHTML = `
+          <a href="cars/${car.id}.html" target="_blank">
+            <img src="${car.image}" alt="${car.name}" style="max-width:100%;border-radius:8px;cursor:pointer;">
+          </a>
+          <h2>${car.name}</h2>
+          <p>Giá: €${car.price.toLocaleString()}<br>
+             ~ ₫${car.price_vnd.toLocaleString("vi-VN")}</p>
+          <a href="cars/${car.id}.html" target="_blank">
+            <button>Chi tiết</button>
+          </a>
+        `;
+        container.appendChild(card);
+      });
+    });
 });
-
-function initApp(){
-  const cars = window.cars || [];
-  const cardsEl = document.getElementById('cards');
-  const countEl = document.getElementById('count');
-  const typeChips = document.getElementById('type-chips');
-  const priceRange = document.getElementById('price-range');
-  const rangeVal = document.getElementById('range-val');
-  const searchInput = document.getElementById('search-input');
-  const onlyAvailable = document.getElementById('only-available');
-  const showLimited = document.getElementById('show-limited');
-  const sortBy = document.getElementById('sort-by');
-  const modal = document.getElementById('modal');
-  const modalTitle = document.getElementById('modal-title');
-  const modalSub = document.getElementById('modal-sub');
-  const modalPrice = document.getElementById('modal-price');
-  const modalSpecs = document.getElementById('modal-specs');
-  const modalDesc = document.getElementById('modal-desc');
-  const modalGallery = document.getElementById('modal-gallery');
-
-  let state = { type:'All', maxPrice: parseInt(priceRange.value,10), q:'', onlyAvailable:false, showLimited:true, sort:'featured' };
-
-  priceRange.addEventListener('input',()=>{ state.maxPrice = parseInt(priceRange.value,10); rangeVal.textContent = '€' + state.maxPrice.toLocaleString(); render(); });
-  searchInput.addEventListener('input',(e)=>{ state.q = e.target.value.trim().toLowerCase(); render() });
-  onlyAvailable.addEventListener('change',()=>{ state.onlyAvailable = onlyAvailable.checked; render() });
-  showLimited.addEventListener('change',()=>{ state.showLimited = showLimited.checked; render() });
-  sortBy.addEventListener('change',()=>{ state.sort = sortBy.value; render() });
-
-  typeChips.addEventListener('click',(e)=>{ const btn = e.target.closest('button'); if(!btn) return; const t = btn.dataset.type; state.type = t; [...typeChips.querySelectorAll('.chip')].forEach(c=>c.classList.toggle('active', c.dataset.type===t)); render(); });
-
-  document.getElementById('show-all').addEventListener('click',()=>{ state={...state,type:'All',q:'',maxPrice:5000000,onlyAvailable:false,showLimited:true,sort:'featured'}; priceRange.value=5000000; rangeVal.textContent='€5,000,000'; [...typeChips.querySelectorAll('.chip')].forEach(c=>c.classList.toggle('active', c.dataset.type==='All')); render() });
-
-  document.getElementById('download-json').addEventListener('click',()=>{ const blob = new Blob([JSON.stringify(cars,null,2)],{type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'prestige-motors-cars.json'; a.click(); URL.revokeObjectURL(url); });
-
-  function render(){
-    let list = cars.slice();
-    if(state.type !== 'All') list = list.filter(c=>c.type===state.type);
-    list = list.filter(c=>c.price <= state.maxPrice);
-    if(state.onlyAvailable) list = list.filter(c=>c.available);
-    if(!state.showLimited) list = list.filter(c=>!c.limited);
-    if(state.q) list = list.filter(c=> (c.name + ' ' + c.brand + ' ' + c.type).toLowerCase().includes(state.q));
-
-    if(state.sort==='price-asc') list.sort((a,b)=>a.price-b.price);
-    else if(state.sort==='price-desc') list.sort((a,b)=>b.price-a.price);
-    else if(state.sort==='hp-desc') list.sort((a,b)=>b.hp-a.hp);
-    else list.sort((a,b)=> (b.limited?1:0) - (a.limited?1:0) );
-
-    countEl.textContent = list.length;
-    cardsEl.innerHTML = '';
-    for(const car of list){
-      const el = document.createElement('article'); el.className='card';
-      el.innerHTML = `
-        <div class="thumb"><a href="cars/${car.id}.html"><img alt="${car.brand} ${car.name}" src="${car.image}" /></a></div>
-        <div class="card-body">
-          <div class="meta"><div><strong>${car.brand} ${car.name}</strong><div style='font-size:13px;color:#666'>${car.type}</div></div><div class="price">€${car.price.toLocaleString()}</div></div>
-          <div class="specs"><div>HP: ${car.hp}</div><div>Top: ${car.topSpeed} km/h</div><div>${car.available? 'Available' : 'Sold'}</div></div>
-          <div class="card-actions">
-            <a class="btn" href="cars/${car.id}.html">Chi tiết</a>
-            <button class="btn secondary" data-short="inquire-${car.id}">Liên hệ</button>
-          </div>
-        </div>
-      `;
-      cardsEl.appendChild(el);
-    }
-    cardsEl.querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click', (e)=>{ const id=e.target.dataset.id; openModal(id) }));
-  }
-
-  function openModal(id){ const car = cars.find(c=>c.id===id); if(!car) return; modalTitle.textContent = car.brand + ' ' + car.name; modalSub.textContent = car.type + ' • ' + (car.limited? 'Limited Edition' : 'Standard'); modalPrice.textContent = '€' + car.price.toLocaleString(); modalDesc.textContent = car.description; modalSpecs.innerHTML = `<div>Power: ${car.hp} HP</div><div>Top Speed: ${car.topSpeed} km/h</div><div>Status: ${car.available? 'In stock' : 'Sold'}</div>`; modalGallery.innerHTML = `<img src="${car.image}" alt="${car.brand} ${car.name}">`; modal.classList.add('open'); }
-
-  modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.classList.remove('open') });
-  document.getElementById('contact').addEventListener('click',()=>{ alert('Gọi hotline +44 20 7946 0958 (ví dụ).') });
-  document.getElementById('inquire').addEventListener('click',()=>{ alert('Yêu cầu mua đã gửi — đại diện sẽ liên hệ bạn sớm.') });
-
-  [...typeChips.querySelectorAll('.chip')].forEach(c=>c.classList.toggle('active', c.dataset.type==='All'));
-  rangeVal.textContent = '€' + priceRange.value.toLocaleString();
-  render();
-}
