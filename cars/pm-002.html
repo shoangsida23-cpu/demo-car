@@ -6,26 +6,27 @@
   <title>Monarque Monarque GT — Prestige Motors</title>
   <meta name="description" content="Supercar hiệu năng cao, thiết kế khí động học, phù hợp cho track và road." />
   <link rel="stylesheet" href="../styles.css">
-  <style>
-    .hero-car{border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(11,11,11,0.07);margin-bottom:18px}
-    .hero-img{height:420px;background:#000;display:flex;align-items:center;justify-content:center}
-    .hero-img img{width:100%;height:100%;object-fit:cover}
-    .container{max-width:1100px;margin:28px auto;padding:18px}
-    .btn-row{display:flex;gap:12px;margin-top:12px}
-  </style>
 </head>
 <body>
-  <div class="container">
-    <a href="../index.html" style="text-decoration:none;color:inherit"><strong>← Trở về</strong></a>
-    <h1 style="margin-top:14px">Monarque Monarque GT</h1>
-    <div class="hero-car">
-      <div class="hero-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80" alt="Monarque Monarque GT" /></div>
-    </div>
+  <div class="wrap" style="padding:24px;max-width:1100px;margin:24px auto">
+    <a href="../index.html" style="color:var(--gold);font-weight:700">← Trở về</a>
+    <h1 style="margin-top:12px">Monarque Monarque GT</h1>
 
-    <div style="display:flex;gap:20px;flex-wrap:wrap">
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
       <div style="flex:1;min-width:300px">
-        <h3>Thông số</h3>
-        <ul>
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.6)">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80" alt="Monarque Monarque GT" style="width:100%;height:420px;object-fit:cover;display:block"/>
+        </div>
+        <div style="margin-top:12px;color:#ddd">Supercar hiệu năng cao, thiết kế khí động học, phù hợp cho track và road.</div>
+      </div>
+
+      <aside style="width:340px;background:var(--muted-2);border-radius:12px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,0.6)">
+        <div style="font-size:13px;color:#bdbdbd">Giá</div>
+        <div style="font-size:22px;font-weight:800;margin-top:6px">€850,000</div>
+        <div style="color:#ddd;margin-top:6px">₫26,142,600,000</div>
+
+        <h3 style="margin-top:12px">Thông số</h3>
+        <ul style="color:#ddd">
           <li>Loại: Supercar</li>
           <li>Công suất: 710 HP</li>
           <li>Tốc độ tối đa: 345 km/h</li>
@@ -33,28 +34,20 @@
           <li>Phiên bản giới hạn: Không</li>
         </ul>
 
-        <div class="btn-row">
+        <div style="margin-top:12px">
           <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Yêu cầu mua</button>
-          <a class="btn secondary" href="../prestige-motors-with-details.zip">Tải thông tin (ZIP)</a>
+          <a class="btn secondary" href="../prestige-motors-fixed.zip" style="margin-left:8px">Tải ZIP</a>
         </div>
-      </div>
-
-      <aside style="width:320px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 8px 30px rgba(12,12,12,0.04)">
-        <div style="font-size:13px;color:#666">Giá</div>
-        <div style="font-size:22px;font-weight:800;margin-top:6px">€850,000</div>
-        <div style="color:#444;margin-top:6px">₫26,142,600,000</div>
-        <div style="margin-top:12px;color:#666;font-size:13px">Mô tả</div>
-        <p style="color:#444">Supercar hiệu năng cao, thiết kế khí động học, phù hợp cho track và road.</p>
       </aside>
     </div>
 
-    <section id="contact" style="margin-top:26px;padding:16px;border-radius:12px;background:linear-gradient(90deg,#fff,#f8f8f8)">
+    <section id="contact" style="margin-top:24px;padding:16px;border-radius:12px;background:linear-gradient(90deg,var(--muted-2),#0c0c0c)">
       <h3>Liên hệ</h3>
-      <p>Nếu bạn muốn mua hoặc biết thêm thông tin, để lại email hoặc số điện thoại (ví dụ form demo):</p>
+      <p style="color:#ddd">Để lại thông tin — demo form (không gửi thật).</p>
       <form onsubmit="event.preventDefault(); alert('Cảm ơn — đại diện sẽ liên hệ bạn sớm (demo).')">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <input placeholder="Họ tên" style="padding:10px;border-radius:8px;border:1px solid #eee;flex:1;min-width:200px" required>
-          <input placeholder="Email hoặc số điện thoại" style="padding:10px;border-radius:8px;border:1px solid #eee;flex:1;min-width:200px" required>
+          <input placeholder="Họ tên" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);flex:1;min-width:200px" required>
+          <input placeholder="Email hoặc số điện thoại" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);flex:1;min-width:200px" required>
         </div>
         <div style="margin-top:10px">
           <button class="btn" type="submit">Gửi yêu cầu</button>
@@ -62,7 +55,7 @@
       </form>
     </section>
 
-    <footer style="margin-top:28px;color:#666">© Prestige Motors — Generated on 2025-08-26 (demo)</footer>
+    <footer style="margin-top:28px;color:#999">© Prestige Motors — Generated on 2025-08-26</footer>
   </div>
 </body>
 </html>
