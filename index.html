@@ -1,44 +1,234 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prestige Motors</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Bán Ô Tô</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 </head>
 <body>
-<header>
-  <div class="logo">🏎 Prestige Motors</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="#products">Sản phẩm</a>
-    <a href="#about">Giới thiệu</a>
-    <a href="#contact">Liên hệ</a>
-    <a href="login.html">Đăng nhập</a>
-  </nav>
-  <div class="header-tools">
-    <input type="text" id="searchBox" placeholder="Tìm kiếm xe...">
-    <a href="cart.html" class="cart-link">🛒 Giỏ hàng (<span id="cartCount">0</span>)</a>
+    <!-- Thanh menu -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            
+            <span class="shop-name" >ĐH.AUTO</span>
+            
+        </div>
+        <div class="navbar-center">
+
+        <img src="./ảnh/DDHH (3).png" alt="Logo" class="logo"> </div>
+        <ul class="navbar-right">
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Sản phẩm</a></li>
+            <li><a href="#">Khuyến mãi</a></li>
+            <li><a href="#">Liên hệ</a></li>
+            <li><a href="#">Đăng nhập</a></li>
+        </ul>
+    </nav>
+        </div>
+      </div>
+    
+<div class="relative w-full h-[600px]">
+  <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+       class="w-full h-full object-cover">
+
+  <!-- Lớp phủ mờ -->
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+  <!-- Chữ + thanh tìm kiếm -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+    <!-- Dòng trên -->
+    <h2 class="text-5xl font-extrabold text-white mb-4">
+      Tìm kiếm chiếc xe mơ ước của bạn
+    </h2>
+    <!-- Dòng dưới -->
+    <p class="text-lg text-white mb-8">
+      Hơn 1000+ mẫu xe đa dạng với giá cả hợp lý
+    </p>
+
+    <!-- Thanh tìm kiếm -->
+    <div class="search-bar">
+      <input type="text" placeholder="Tìm kiếm ô tô...">
+      <button class="search-bar  button">Tìm kiếm</button>
+    </div>
   </div>
-</header>
+</div>
+<section class="banner-divider">
+  <div class="divider-content">
+    <h2>Khám phá bộ sưu tập xe sang trọng và mạnh mẽ</h2>
+    <p>Từ thể thao cá tính đến SUV đẳng cấp – tất cả đều có tại Shop</p>
+    <a href="#sanpham" class="btn-cta">Xem thêm sản phẩm</a>
+  </div>
+</section>
+    <!-- Banner chạy -->
+    <div class="banner-slider">
+        <button class="banner-btn prev">&#10094;</button>
+        <div class="banners">
+            <img src="https://img.incar.tw/2020/11/1605324837-2ba000091aefbb0f5619292c0013f626.jpg" alt="Banner 1" class="banner active">
+            <img src="https://cdn.motor1.com/images/mgl/gZKNE/s1/2022-lexus-lx-600.jpg" alt="Banner 2" class="banner">
+            <img src="https://autopro8.mediacdn.vn/2018/3/7/land-rover-range-rover-sv-coupe-geneva-2018-3-152038896104867943528.jpg" alt="Banner 3" class="banner">
+        </div>
+        <button class="banner-btn next">&#10095;</button>
+    </div>
 
-<main>
-  <section id="promo">
-    <h1>Xe sang trọng - Supercars - Hypercars</h1>
-    <p>Khám phá bộ sưu tập 5 siêu phẩm mới nhất.</p>
-  </section>
-  <section id="products">
-    <h2>Sản phẩm nổi bật</h2>
-    <div id="productList" class="product-grid"></div>
-  </section>
-</main>
+    <section class="product-intro">
+  <h2>Khám phá các thương hiệu xe hàng đầu</h2>
+  <p>Hơn 1000+ mẫu xe đa dạng, chính hãng, giá cả hợp lý - chọn ngay cho bạn chiếc xe mơ ước</p>
+</section>
+    <!-- Danh mục bán hàng -->
+    <section class="car-brands">
+        <div class="brand-card">
+            <img src="https://logospng.org/download/toyota/logo-toyota-1536.png" alt="Toyota">
+            <span>Toyota</span>
+        </div>
+        <div class="brand-card">
+            <img src="https://th.bing.com/th/id/R.3ee052c5eff72466a1c5c63eee174e3f?rik=5tMDRlNwmt5SWw&riu=http%3a%2f%2fchothuexecuoihanoi.com%2fwp-content%2fuploads%2f2016%2f05%2flich-su-hinh-thanh-va-y-nghia-logo-hang-xe-lexus5.png&ehk=UhX3h9X7cLHa1SjPuDilzk4rfBSiFLWbQzJCxzC%2fXo8%3d&risl=&pid=ImgRaw&r=0" alt="Lexus">
+            <span>Lexus</span>
+        </div>
+        <div class="brand-card">
+            <img src="https://listcarbrands.com/wp-content/uploads/2016/03/Mercedes-Benz-Logo-1920x1080.png" alt="Mercedes">
+            <span>Mercedes</span>
+        </div>
+        <div class="brand-card">
+            <img src="https://www.carlogos.org/logo/Audi-logo-1999-1920x1080.png" alt="Audi">
+            <span>Audi</span>
+        </div>
+        <div class="brand-card">
+            <img src="https://wallpapers.com/images/hd/download-logo-bmw-wallpaper-000hxwwya5pbqpwc.jpg" alt="BMW">
+            <span>BMW</span>
+        </div>
+    </section>
+<section class="car1-brands">
+        <div class="brandd-card">
+            <img src="https://baothainguyen.vn/file/e7837c027f6ecd14017ffa4e5f2a0e34/032024/toyota-land-cruiser-lc300-2022-9_20240325090218.jpg" alt="Toyota">
+           
+        </div>
+        <div class="brandd-card">
+            <img src="https://img1.oto.com.vn/2021/09/06/OpzfnMD2/lx570-dau-ff5d.jpg" alt="Lexus">
+            
+        </div>
+        <div class="brandd-card">
+            <img src="https://car-images.bauersecure.com/wp-images/13101/amgg63_108.jpg" alt="Mercedes">
+           
+        </div>
+        <div class="brandd-card">
+            <img src="https://thuthuatnhanh.com/wp-content/uploads/2019/08/anh-sieu-xe-Audi-mau-do.jpg" alt="Audi">
+           
+        </div>
+        <div class="brandd-card">
+            <img src="https://img1.oto.com.vn/2018/12/06/4FXoELMG/danh-gia-xe-bmw-3-se-4e03_wm.jpg" alt="BMW">
+           
+        </div>
+    </section>
 
-<footer>
-  <p>Nhóm 5 - Đồ án Website Bán Xe Sang</p>
-  <div id="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    
+<footer class="bg-gray-900 text-gray-300 mt-12">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+    
+    <!-- Cột 1: AutoShop -->
+    <div>
+      <h3 class="text-white text-lg font-semibold mb-4">AutoShop</h3>
+      <p>Chuyên cung cấp các dòng xe chất lượng cao với giá cả hợp lý nhất thị trường.</p>
+    </div>
+
+    <!-- Cột 2: Thông tin -->
+    <div>
+      <h3 class="text-white text-lg font-semibold mb-4">Thông tin</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-blue-400">Về chúng tôi</a></li>
+        <li><a href="#" class="hover:text-blue-400">Chính sách bảo mật</a></li>
+        <li><a href="#" class="hover:text-blue-400">Điều khoản dịch vụ</a></li>
+        <li><a href="#" class="hover:text-blue-400">Câu hỏi thường gặp</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 3: Dịch vụ -->
+    <div>
+      <h3 class="text-white text-lg font-semibold mb-4">Dịch vụ</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-blue-400">Mua xe trả góp</a></li>
+        <li><a href="#" class="hover:text-blue-400">Đăng ký lái thử</a></li>
+        <li><a href="#" class="hover:text-blue-400">Bảo dưỡng định kỳ</a></li>
+        <li><a href="#" class="hover:text-blue-400">Bảo hiểm xe</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 4: Liên hệ -->
+    <div>
+      <h3 class="text-white text-lg font-semibold mb-4">Liên hệ</h3>
+      <ul class="space-y-2">
+        <li><i class="fas fa-map-marker-alt mr-2"></i>123 Đường ABC, Quận 1, TP.HCM</li>
+        <li><i class="fas fa-phone mr-2"></i>1900 1234</li>
+        <li><i class="fas fa-envelope mr-2"></i>info@autoshop.vn</li>
+      </ul>
+      <div class="flex space-x-4 mt-4">
+        <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-blue-400"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bản quyền -->
+  <div class="border-t border-gray-700 py-4 text-center text-gray-400 text-sm">
+    © 2023 AutoShop. Tất cả các quyền được bảo lưu.
   </div>
 </footer>
+
+
+    <script src="script.js"></script>
 </body>
-</html>
+</html></ul></div>
+<script>
+const banners = document.querySelectorAll('.banner');
+const prevBtn = document.querySelector('.banner-btn.prev');
+const nextBtn = document.querySelector('.banner-btn.next');
+let current = 0;
+let timer;
+
+function showBanner(index) {
+    banners.forEach((banner, i) => {
+        banner.classList.toggle('active', i === index);
+    });
+}
+
+function nextBanner() {
+    current = (current + 1) % banners.length;
+    showBanner(current);
+}
+
+function prevBanner() {
+    current = (current - 1 + banners.length) % banners.length;
+    showBanner(current);
+}
+
+function startAutoSlide() {
+    timer = setInterval(nextBanner, 3000);
+}
+
+function stopAutoSlide() {
+    clearInterval(timer);
+}
+
+prevBtn.addEventListener('click', () => {
+    stopAutoSlide();
+    prevBanner();
+    startAutoSlide();
+});
+
+nextBtn.addEventListener('click', () => {
+    stopAutoSlide();
+    nextBanner();
+    startAutoSlide();
+});
+
+showBanner(current);
+startAutoSlide();
+</script>

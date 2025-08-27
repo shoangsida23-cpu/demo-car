@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoShop - Chuyên bán ô tô trực tuyến</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .car-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .login-modal {
+        transition: all 0.3s ease;
+      }
+      .category-active {
+        border-bottom: 3px solid #3b82f6;
+        color: #3b82f6;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-car text-blue-500 text-2xl"></i>
+          <h1 class="text-xl font-bold text-gray-800">
+            Auto<span class="text-blue-500">Shop</span>
+          </h1>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#" class="text-gray-700 hover:text-blue-500">Trang chủ</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Danh mục</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Khuyến mãi</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Liên hệ</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <button id="search-btn" class="p-2 text-gray-600 hover:text-blue-500">
+            <i class="fas fa-search"></i>
+          </button>
+          <button
+            id="cart-btn"
+            class="p-2 text-gray-600 hover:text-blue-500 relative"
+          >
+            <i class="fas fa-shopping-cart"></i>
+            <span
+              class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+              >3</span
+            >
+          </button>
+          <button
+            id="login-btn"
+            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+          >
+            Đăng nhập
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-16"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">
+          Tìm kiếm chiếc xe mơ ước của bạn
+        </h2>
+        <p class="text-xl mb-8">Hơn 1000+ mẫu xe đa dạng với giá cả hợp lý</p>
+        <div class="max-w-2xl mx-auto bg-white rounded-lg overflow-hidden flex">
+          <input
+            type="text"
+            placeholder="Tìm kiếm xe theo tên, hãng..."
+            class="flex-grow px-4 py-3 text-gray-800 focus:outline-none"
+          />
+          <button class="bg-blue-600 px-6 py-3 hover:bg-blue-700 transition">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Danh mục xe</h2>
+        <div class="flex flex-wrap justify-center gap-6 mb-12">
+          <button
+            class="category-btn px-6 py-2 font-medium border-b-2 border-transparent hover:text-blue-500 transition category-active"
+            data-category="all"
+          >
+            Tất cả
+          </button>
+          <button
+            class="category-btn px-6 py-2 font-medium border-b-2 border-transparent hover:text-blue-500 transition"
+            data-category="sedan"
+          >
+            Sedan
+          </button>
+          <button
+            class="category-btn px-6 py-2 font-medium border-b-2 border-transparent hover:text-blue-500 transition"
+            data-category="suv"
+          >
+            SUV
+          </button>
+          <button
+            class="category-btn px-6 py-2 font-medium border-b-2 border-transparent hover:text-blue-500 transition"
+            data-category="hatchback"
+          >
+            Hatchback
+          </button>
+          <button
+            class="category-btn px-6 py-2 font-medium border-b-2 border-transparent hover:text-blue-500 transition"
+            data-category="pickup"
+          >
+            Pickup
+          </button>
+          <button
+            class="category-btn px-6 py-2 font-medium border-b-2 border-transparent hover:text-blue-500 transition"
+            data-category="luxury"
+          >
+            Xe sang
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cars Grid -->
+    <section class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="cars-container"
+        >
+          <!-- Cars will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Brands -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Hãng xe nổi bật</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div
+            class="flex justify-center items-center p-4 border rounded-lg hover:shadow-md transition"
+          >
+            <img
+              src="https://logo.clearbit.com/toyota.com"
+              alt="Toyota"
+              class="h-12"
+            />
+          </div>
+          <div
+            class="flex justify-center items-center p-4 border rounded-lg hover:shadow-md transition"
+          >
+            <img
+              src="https://logo.clearbit.com/honda.com"
+              alt="Honda"
+              class="h-12"
+            />
+          </div>
+          <div
+            class="flex justify-center items-center p-4 border rounded-lg hover:shadow-md transition"
+          >
+            <img
+              src="https://logo.clearbit.com/ford.com"
+              alt="Ford"
+              class="h-12"
+            />
+          </div>
+          <div
+            class="flex justify-center items-center p-4 border rounded-lg hover:shadow-md transition"
+          >
+            <img
+              src="https://logo.clearbit.com/hyundai.com"
+              alt="Hyundai"
+              class="h-12"
+            />
+          </div>
+          <div
+            class="flex justify-center items-center p-4 border rounded-lg hover:shadow-md transition"
+          >
+            <img
+              src="https://logo.clearbit.com/mercedes-benz.com"
+              alt="Mercedes"
+              class="h-12"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div
+      id="login-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden login-modal"
+    >
+      <div class="bg-white rounded-lg w-full max-w-md p-6 mx-4">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800">Đăng nhập</h3>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="login-form">
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Nhập email của bạn"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <label for="password" class="block text-gray-700 mb-2"
+              >Mật khẩu</label
+            >
+            <input
+              type="password"
+              id="password"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition mb-4"
+          >
+            Đăng nhập
+          </button>
+          <div class="text-center">
+            <a href="#" class="text-blue-500 hover:underline">Quên mật khẩu?</a>
+            <p class="mt-2 text-gray-600">
+              Chưa có tài khoản?
+              <a href="#" class="text-blue-500 hover:underline">Đăng ký ngay</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">AutoShop</h3>
+            <p class="text-gray-400">
+              Chuyên cung cấp các dòng xe chất lượng cao với giá cả hợp lý nhất
+              thị trường.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Thông tin</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Về chúng tôi</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Chính sách bảo mật</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Điều khoản dịch vụ</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Câu hỏi thường gặp</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Dịch vụ</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Mua xe trả góp</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Đăng ký lái thử</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Bảo dưỡng định kỳ</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Bảo hiểm xe</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Liên hệ</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center space-x-2 text-gray-400">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>123 Đường ABC, Quận 1, TP.HCM</span>
+              </li>
+              <li class="flex items-center space-x-2 text-gray-400">
+                <i class="fas fa-phone"></i> <span>1900 1234</span>
+              </li>
+              <li class="flex items-center space-x-2 text-gray-400">
+                <i class="fas fa-envelope"></i> <span>info@autoshop.vn</span>
+              </li>
+            </ul>
+            <div class="mt-4 flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>© 2023 AutoShop. Tất cả các quyền được bảo lưu.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sample car data
+      const cars = [
+        {
+          id: 1,
+          name: "Toyota Camry 2023",
+          price: "1.250.000.000 VNĐ",
+          category: "sedan",
+          image:
+            "https://www.toyota.com.vn/media/3x3x4v5u/toyota-camry-2023.png",
+          features: [
+            "2.5L động cơ xăng",
+            "Tiết kiệm nhiên liệu",
+            "Hệ thống an toàn Toyota Safety Sense",
+          ],
+        },
+        {
+          id: 2,
+          name: "Honda CR-V 2023",
+          price: "1.350.000.000 VNĐ",
+          category: "suv",
+          image: "https://www.honda.com.vn/upload/honda-cr-v-2023.png",
+          features: [
+            "Động cơ 1.5L Turbo",
+            "7 chỗ ngồi",
+            "Công nghệ Honda Sensing",
+          ],
+        },
+        {
+          id: 3,
+          name: "Ford Ranger Raptor",
+          price: "1.550.000.000 VNĐ",
+          category: "pickup",
+          image:
+            "https://www.ford.com.vn/content/dam/Ford/website-assets/ap/vn/nameplate/raptor/overview/ford-raptor-overview-hero.jpg",
+          features: [
+            "Động cơ 2.0L Bi-Turbo",
+            "Hệ thống treo FOX",
+            "Lái thể thao",
+          ],
+        },
+        {
+          id: 4,
+          name: "Mercedes-Benz S-Class",
+          price: "5.200.000.000 VNĐ",
+          category: "luxury",
+          image:
+            "https://www.mercedes-benz.com.vn/content/dam/mb-vietnam/models/s-class/s-class-sedan/overview/mercedes-benz-s-class-sedan-overview.jpg",
+          features: [
+            "Động cơ V8 4.0L",
+            "Nội thất sang trọng",
+            "Công nghệ tiên tiến",
+          ],
+        },
+        {
+          id: 5,
+          name: "Hyundai Tucson 2023",
+          price: "1.050.000.000 VNĐ",
+          category: "suv",
+          image:
+            "https://www.hyundai.com.vn/uploads/product/tucson/tucson-2023.png",
+          features: [
+            "Thiết kế Parametric",
+            "Động cơ Smartstream",
+            "Hệ thống an toàn Hyundai SmartSense",
+          ],
+        },
+        {
+          id: 6,
+          name: "Toyota Vios 2023",
+          price: "650.000.000 VNĐ",
+          category: "sedan",
+          image:
+            "https://www.toyota.com.vn/media/3x3x4v5u/toyota-vios-2023.png",
+          features: [
+            "Tiết kiệm nhiên liệu",
+            "An toàn 7 túi khí",
+            "Công nghệ Toyota Safety Sense",
+          ],
+        },
+        {
+          id: 7,
+          name: "Honda City Hatchback",
+          price: "720.000.000 VNĐ",
+          category: "hatchback",
+          image:
+            "https://www.honda.com.vn/upload/honda-city-hatchback-2023.png",
+          features: [
+            "Thiết kế trẻ trung",
+            "Động cơ 1.5L",
+            "Tiết kiệm nhiên liệu",
+          ],
+        },
+        {
+          id: 8,
+          name: "Ford Everest 2023",
+          price: "1.450.000.000 VNĐ",
+          category: "suv",
+          image:
+            "https://www.ford.com.vn/content/dam/Ford/website-assets/ap/vn/nameplate/everest/overview/ford-everest-overview-hero.jpg",
+          features: [
+            "Động cơ 2.0L Bi-Turbo",
+            "7 chỗ ngồi",
+            "Hệ thống dẫn động 4WD",
+          ],
+        },
+        {
+          id: 9,
+          name: "BMW 5 Series",
+          price: "3.800.000.000 VNĐ",
+          category: "luxury",
+          image:
+            "https://www.bmw.com.vn/content/dam/bmw/marketVN/bmw_com_vn/all-models/5-series/sedan/2020/overview/bmw-5-series-sedan-overview.jpg",
+          features: [
+            "Động cơ TwinPower Turbo",
+            "Nội thất cao cấp",
+            "Công nghệ BMW ConnectedDrive",
+          ],
+        },
+      ];
+
+      // DOM Elements
+      const loginBtn = document.getElementById("login-btn");
+      const closeModalBtn = document.getElementById("close-modal");
+      const loginModal = document.getElementById("login-modal");
+      const loginForm = document.getElementById("login-form");
+      const carsContainer = document.getElementById("cars-container");
+      const categoryBtns = document.querySelectorAll(".category-btn");
+
+      // Display all cars initially
+      displayCars(cars);
+
+      // Event Listeners
+      loginBtn.addEventListener("click", () => {
+        loginModal.classList.remove("hidden");
+      });
+
+      closeModalBtn.addEventListener("click", () => {
+        loginModal.classList.add("hidden");
+      });
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Simple validation
+        if (email && password) {
+          alert("Đăng nhập thành công!");
+          loginModal.classList.add("hidden");
+          loginBtn.textContent = "Tài khoản";
+          loginBtn.classList.remove("bg-blue-500");
+          loginBtn.classList.add("bg-green-500");
+        } else {
+          alert("Vui lòng nhập đầy đủ thông tin!");
+        }
+      });
+
+      // Category filter
+      categoryBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Update active category
+          categoryBtns.forEach((b) => b.classList.remove("category-active"));
+          btn.classList.add("category-active");
+
+          const category = btn.dataset.category;
+          if (category === "all") {
+            displayCars(cars);
+          } else {
+            const filteredCars = cars.filter(
+              (car) => car.category === category
+            );
+            displayCars(filteredCars);
+          }
+        });
+      });
+
+      // Function to display cars
+      function displayCars(carsToDisplay) {
+        carsContainer.innerHTML = "";
+
+        if (carsToDisplay.length === 0) {
+          carsContainer.innerHTML =
+            '<p class="text-center col-span-3 text-gray-500">Không có xe nào trong danh mục này.</p>';
+          return;
+        }
+
+        carsToDisplay.forEach((car) => {
+          const carCard = document.createElement("div");
+          carCard.className =
+            "bg-white rounded-lg overflow-hidden shadow-md car-card transition duration-300";
+          carCard.innerHTML = `
+                    <div class="h-48 overflow-hidden">
+                        <img src="${car.image}" alt="${
+            car.name
+          }" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">${car.name}</h3>
+                        <p class="text-blue-500 font-bold text-lg mb-4">${
+                          car.price
+                        }</p>
+                        <ul class="mb-4 space-y-2">
+                            ${car.features
+                              .map(
+                                (feature) =>
+                                  `<li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> ${feature}</li>`
+                              )
+                              .join("")}
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                                <i class="fas fa-shopping-cart mr-2"></i> Mua ngay
+                            </button>
+                            <button class="px-4 py-2 border border-blue-500 text-blue-500 rounded-md hover:bg-blue-50 transition">
+                                <i class="fas fa-info-circle mr-2"></i> Chi tiết
+                            </button>
+                        </div>
+                    </div>
+                `;
+          carsContainer.appendChild(carCard);
+        });
+      }
+    </script>
+  </body>
+</html>

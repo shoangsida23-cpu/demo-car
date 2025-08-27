@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoElite - Premium Car Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .car-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+        background-size: cover;
+        background-position: center;
+      }
+      .search-box {
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.85);
+      }
+      .feature-icon {
+        transition: all 0.3s ease;
+      }
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1);
+        color: #3b82f6;
+      }
+      .testimonial-card {
+        transition: all 0.3s ease;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <div class="flex items-center">
+          <i class="fas fa-car text-blue-600 text-3xl mr-2"></i>
+          <h1 class="text-2xl font-bold text-gray-800">
+            Auto<span class="text-blue-600">Elite</span>
+          </h1>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-gray-600 focus:outline-none"
+        >
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <div class="dropdown relative">
+            <button
+              class="text-gray-700 hover:text-blue-600 font-medium flex items-center"
+            >
+              Cars <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <div
+              class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                >New Cars</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                >Used Cars</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                >Luxury Vehicles</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                >Electric Cars</a
+              >
+            </div>
+          </div>
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium"
+            >Dealers</a
+          >
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium"
+            >Financing</a
+          >
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium"
+            >Services</a
+          >
+          <a href="#" class="text-gray-700 hover:text-blue-600 font-medium"
+            >About</a
+          >
+        </nav>
+
+        <!-- User Actions -->
+        <div class="hidden md:flex items-center space-x-4">
+          <button class="text-gray-600 hover:text-blue-600">
+            <i class="fas fa-search text-xl"></i>
+          </button>
+          <button class="text-gray-600 hover:text-blue-600">
+            <i class="fas fa-heart text-xl"></i>
+          </button>
+          <button class="text-gray-600 hover:text-blue-600">
+            <i class="fas fa-user text-xl"></i>
+          </button>
+          <button
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium"
+          >
+            Sell Your Car
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div class="container mx-auto px-4 py-3">
+          <div class="flex flex-col space-y-3">
+            <a
+              href="#"
+              class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b"
+              >New Cars</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b"
+              >Used Cars</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b"
+              >Dealers</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b"
+              >Financing</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-blue-600 font-medium py-2 border-b"
+              >Services</a
+            >
+            <div class="flex space-x-4 pt-2">
+              <button
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium flex-1"
+              >
+                Login
+              </button>
+              <button
+                class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md font-medium flex-1"
+              >
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20 md:py-32">
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">
+            Find Your Dream Car Today
+          </h1>
+          <p class="text-xl mb-8">
+            Browse thousands of new and used cars from trusted dealers
+            nationwide
+          </p>
+
+          <div class="search-box p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <select
+                class="border rounded-md px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option>All Makes</option>
+                <option>Toyota</option>
+                <option>Honda</option>
+                <option>BMW</option>
+                <option>Mercedes</option>
+                <option>Audi</option>
+              </select>
+              <select
+                class="border rounded-md px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option>All Models</option>
+                <option>Camry</option>
+                <option>Civic</option>
+                <option>3 Series</option>
+                <option>C-Class</option>
+                <option>A4</option>
+              </select>
+              <select
+                class="border rounded-md px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option>Price Range</option>
+                <option>Under $10,000</option>
+                <option>$10,000 - $20,000</option>
+                <option>$20,000 - $30,000</option>
+                <option>Over $30,000</option>
+              </select>
+              <button
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium"
+              >
+                <i class="fas fa-search mr-2"></i> Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-10">
+          <h2 class="text-3xl font-bold text-gray-800">Featured Vehicles</h2>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-medium"
+            >View All <i class="fas fa-arrow-right ml-1"></i
+          ></a>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+        >
+          <!-- Car Card 1 -->
+          <div
+            class="car-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300"
+          >
+            <div class="relative">
+              <img
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="BMW 5 Series"
+                class="w-full h-48 object-cover"
+              />
+              <div
+                class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full"
+              >
+                NEW
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-bold text-gray-800">
+                  2023 BMW 5 Series
+                </h3>
+                <span class="text-blue-600 font-bold">$54,999</span>
+              </div>
+              <div class="flex items-center text-gray-600 text-sm mb-4">
+                <span class="mr-3"
+                  ><i class="fas fa-tachometer-alt mr-1"></i> 12,345 mi</span
+                >
+                <span
+                  ><i class="fas fa-map-marker-alt mr-1"></i> Los Angeles,
+                  CA</span
+                >
+              </div>
+              <div class="flex justify-between text-sm text-gray-600 mb-4">
+                <span>Automatic</span>
+                <span>Sedan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
